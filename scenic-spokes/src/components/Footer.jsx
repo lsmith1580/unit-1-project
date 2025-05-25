@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
-        <footer>
-
+        <footer id="footer">
+            <p>&copy; {new Date().getFullYear()} Scenic Spokes</p>
         </footer>
     );
 };

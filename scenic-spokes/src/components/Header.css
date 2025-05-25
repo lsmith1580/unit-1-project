@@ -1,0 +1,132 @@
+.active {
+    background-color: #58766A;
+}
+
+.logo img {
+    display: block;
+}
+
+.logo-image {
+    height: 80px;
+    width: 90px;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.logo-image:hover {
+    animation: rotateImage 1s infinite;
+}
+
+@keyframes rotateImage {
+    0% {
+        transform: rotate3d(0, 0, 0, 0deg);
+    }
+
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eddbad;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+nav .title {
+    font-size: 2rem;
+    margin: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #223f2a;
+    display: flex;
+    padding: 1rem;
+    text-align: right;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: #223f2a;
+    padding: 0.75rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+nav ul li a:hover {
+    background-color: #58766A;
+}
+
+nav .menu {
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2rem;
+}
+
+nav .menu span {
+    height: 0.4rem;
+    width: 100%;
+    background-color: white;
+    border-radius: 0.2rem;
+}
+
+@media (max-width: 480px) {
+    nav .menu {
+        display: flex;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 0.25rem;
+    }
+
+    nav ul.open {
+        display: flex;
+        padding: 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        margin: 0.2rem 0.5rem;
+        padding: 0.75rem 1rem;
+    }
+}
+
+
