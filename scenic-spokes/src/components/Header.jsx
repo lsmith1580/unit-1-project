@@ -5,7 +5,8 @@ import "./Header.css";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [hoveringRoutesLink, setHoveringRoutesLink] = useState(false);
+    const [hoveringRoutesDropdown, setHoveringRoutesDropdown] = useState(false);
     
     return (
     <header className="header">
@@ -13,21 +14,21 @@ const Header = () => {
             <div className="title-container">
                 <img src="/scenic-spokes-logo.png" className="logo-image" alt="scenic spokes logo" height={"80px"} width={"80px"}/>
                 <Link to="/" className="title">Scenic Spokes</Link>
-            </div>
-            <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
-                <span></span>
-                <span></span>
-                <span></span>
+                <div className="mobile-menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
             <div className="nav-links">
             <ul className={menuOpen ? "open" : ""}>
                 <li>
                     <NavLink to="/about">About</NavLink>
                 </li>
-                <li onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
-                    <NavLink to="/route-map">Scenic Route Map</NavLink>
-                    {dropdownOpen && (
-                    <ul className="dropdown-menu">
+                <li>
+                    <NavLink onMouseEnter={() => setHoveringRoutesLink(true)} onMouseLeave={() => setHoveringRoutesLink(false)} to="/route-map">Scenic Route Map</NavLink>
+                    {(hoveringRoutesLink || hoveringRoutesDropdown) && (
+                    <ul className="routes-dropdown-menu"onMouseEnter={() => setHoveringRoutesDropdown(true)} onMouseLeave={() => setHoveringRoutesDropdown(false)}>
                         <li>
                             <NavLink to="/route-map/north-loop">North Loop</NavLink>
                         </li>

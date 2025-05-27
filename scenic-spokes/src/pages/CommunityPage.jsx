@@ -18,7 +18,7 @@ const events = [
         id: 3,
         title: "Bike Show",
         date: "July 10th",
-        image: ""
+        image: "/ojo-toluwashe-_PcRWlbEqAE-unsplash.jpg"
     }
 ];
 

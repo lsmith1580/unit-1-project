@@ -34,30 +34,33 @@ nav {
     align-items: center;
     /* background-color: #eddbad; */
     background-color: white;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
     width: 100%;
 }
 
 nav .title {
     font-size: 2rem;
-    margin: 1rem;
     font-weight: 700;
     text-decoration: none;
-    color: #223f2a;
-    display: flex;
-    padding: 1rem;
-    text-align: right;
+    color: #24422c;
 }
 
 .title-container {
     display: flex;
     align-items: center;
+    gap: .5rem;
 }
 
 nav ul {
     display: flex;
+}
+
+.routes-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    padding: .5rem 0;
+    border-radius: 0.5rem;
 }
 
 nav ul li {
@@ -67,7 +70,7 @@ nav ul li {
 nav ul li a {
     display: block;
     text-decoration: none;
-    color: #223f2a;
+    color: #24422c;
     padding: 0.75rem 1rem;
     margin: 0 0.5rem;
     border-radius: 0.5rem;
@@ -79,27 +82,30 @@ nav ul li a:hover {
     background-color: #58766A;
 }
 
-nav .menu {
+nav .mobile-menu-toggle {
     display: none;
-    position: absolute;
-    top: 0.75rem;
-    right: 0.5rem;
     flex-direction: column;
     justify-content: space-between;
     width: 2.25rem;
     height: 2rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
 }
 
-nav .menu span {
+nav .mobile-menu-toggle span {
     height: 0.4rem;
     width: 100%;
-    background-color: white;
+    background-color: #24422c;
     border-radius: 0.2rem;
 }
 
 @media (max-width: 480px) {
-    nav .menu {
+    nav .mobile-menu-toggle {
         display: flex;
+    }
+
+    nav .nav-links {
+        width: 100%
     }
 
     nav {
@@ -127,6 +133,10 @@ nav .menu span {
     nav ul li a {
         margin: 0.2rem 0.5rem;
         padding: 0.75rem 1rem;
+    }
+
+    .routes-dropdown-menu {
+        display: none;
     }
 }
 
