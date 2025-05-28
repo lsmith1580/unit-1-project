@@ -1,45 +1,59 @@
+import { useState } from "react";
 import EventCard from "../components/EventCard";
+import EventForm from "../components/EventForm";
+import { useEffect } from "react";
 
-
-const events = [
-    {
-        id: 1, 
+const defaultEvents = [
+    { 
         title: "85th Sturgis Motorcycle Rally", 
         date: "August 1st - 10th, 2025",
-        image: "/maxim-simonov-RUcDh47KhLk-unsplash.jpg"
+        image: "/maxim-simonov-RUcDh47KhLk-unsplash.jpg",
+        description: ""
     },
     {
-        id: 2,
         title: "Bike Night",
         date: "June 17th",
-        image: "/dipankar-gogoi-ZxYIby8WSNI-unsplash.jpg"
+        image: "/dipankar-gogoi-ZxYIby8WSNI-unsplash.jpg",
+        description: ""
     },
     {
-        id: 3,
         title: "Bike Show",
         date: "July 10th",
-        image: "/ojo-toluwashe-_PcRWlbEqAE-unsplash.jpg"
+        image: "/ojo-toluwashe-_PcRWlbEqAE-unsplash.jpg",
+        description: ""
     }
 ];
 
-
 const CommunityPage = () => {
-    
-    const handleAddEvent = () => {
 
-    }
+    const [userEvents, setUserEvents] = useState([]);
+
+    useEffect(() => {
+        const storedEvents = localStorage.getItem("userEvents");
+        if (storedEvents) {
+            setUserEvents(JSON.parse(storedEvents));
+        } 
+    }, []);
+
+    useEffect (() => {
+        localStorage.setItem("userEvents", JSON.stringify(userEvents));
+    }, [userEvents]);
+
+    const addEvent = (newEvent) => {
+        setUserEvents(prevEvents => [...prevEvents, newEvent]);
+    };
+
+    const combinedEvents = [...defaultEvents, ...userEvents];
 
     return (
         <div className="community-page">
-            <h2>Community Events</h2>
+            <h1>Community Events</h1>
             <div className="event-grid">
-                {events.map(event => 
-                    <EventCard event={event} key={event.id}/>
-                )}
+                {combinedEvents.map((event, index) => (
+                    <EventCard event={event} key={index}/>
+                ))}
             </div>
-            <form onSubmit={handleAddEvent} className="event-form">
-                <input type="text" placeholder="Add an event" className="event-input"/>
-            </form>
+            <EventForm addEvent={addEvent}/>
         </div>
     );
 };

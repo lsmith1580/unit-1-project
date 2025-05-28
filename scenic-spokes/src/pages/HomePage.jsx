@@ -8,7 +8,7 @@ const HomePage = () => {
                next unforgettable journey, check out must-see stops, and connect with
                a community that knows it’s about the ride, not just the destination.</p>
             <br/>
-            <p><bold>Start your adventure today. The road is calling.</bold></p>
+            <p>Start your adventure today. The road is calling.</p>
         </div>
     );
 };

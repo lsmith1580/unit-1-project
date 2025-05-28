@@ -1,8 +1,8 @@
 .root {
-  font-family: "Inter";
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
+    font-family: "Inter";
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
 }
 
 #window {
@@ -13,41 +13,20 @@
 body {
     padding: 0;
     margin: 0;
-    height: 100%;
-    overflow: hidden;
+    height: 100vh;
+    border-left: 1rem solid white;
+    border-right: 1rem solid white;
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow: auto;
+    }
 }
 
 h1 {
     margin: 0;
 }
-
-/* .home-page {
-    background-image: url('/alexey-malakhov-LZVkAbIw74Q-unsplash.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100dvh;
-    background-position: center center;
-    background-attachment: fixed;
-    margin: 0;
-}
-
-.home-page h2 {
-    position: relative;
-    top: 10rem;
-    display: inline;
-    display: inline-block;
-    color: white;
-    font-weight: 600;
-    padding-left: 1.5rem;
-}
-
-.home-page p {
-    position: relative;
-    top: 26rem;
-    color: white;
-    font-weight: 500;
-    padding-left: 1.25rem;
-} */
 
 .home-page {
     background-image: url('/alexey-malakhov-LZVkAbIw74Q-unsplash.jpg');
@@ -111,34 +90,40 @@ h1 {
 }
 
 .community-page {
-    /* background-color: #838c5a; */
     background-color: #24422c;
     height: 100dvh;
 }
 
+.community-page h1 {
+    color: white;
+    text-align: center;
+    padding-top: 1rem;
+}
+
 .event-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
 }
 
 .event-card {
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-  background-color: #fff;
-  transition: transform 0.2s ease;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    transition: transform 0.2s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-4px);
+    transform: translateY(-4px);
 }
 
 .event-image {
-  width: 100%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .event-image img {
@@ -149,33 +134,50 @@ h1 {
 }
 
 .event-content {
-  padding: 16px;
+    padding: 16px;
 }
 
 .event-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.event-info {
+    text-align: center;
 }
 
 .event-date {
-  color: #555;
-  font-size: 14px;
+    color: #555;
+    font-size: 14px;
 }
 
 .about-page {
-    background-color: #24422c;
+    background-image: url('/alexey-malakhov-LZVkAbIw74Q-unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100dvh;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.route-map {
+    background-image: url('/sturgis-map.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100dvh;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 #footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     height: 2.5rem;
     padding: 1rem;
     font-weight: 600;
     font-size: 1rem;
+    background-color: white;
 } 
 
 
