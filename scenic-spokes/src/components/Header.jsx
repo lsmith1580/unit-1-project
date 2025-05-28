@@ -26,7 +26,7 @@ const Header = () => {
                     <NavLink to="/about">About</NavLink>
                 </li>
                 <li>
-                    <NavLink onMouseEnter={() => setHoveringRoutesLink(true)} onMouseLeave={() => setHoveringRoutesLink(false)} to="/route-map">Scenic Route Map</NavLink>
+                    <NavLink onMouseEnter={() => setHoveringRoutesLink(true)} onMouseLeave={() => setHoveringRoutesLink(false)} to="/route-map">Sturgis Route Map</NavLink>
                     {(hoveringRoutesLink || hoveringRoutesDropdown) && (
                     <ul className="routes-dropdown-menu"onMouseEnter={() => setHoveringRoutesDropdown(true)} onMouseLeave={() => setHoveringRoutesDropdown(false)}>
                         <li>

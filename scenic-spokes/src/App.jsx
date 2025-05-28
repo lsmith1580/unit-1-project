@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -10,11 +12,24 @@ import Header from './components/Header';
 
 
 function App() {
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   if (location.pathname === '/community') {
+  //     document.body.style.overflow = 'auto';
+  //   } else {
+  //     document.body.style.overflow = 'hidden';
+  //   }
+
+  //   return () => {
+  //     document.body.style.overflow = 'hidden'
+  //   };
+  // }, [location]);
 
   return (
     <div id="window">
           <Header />
-            <main>
+            <main className='main-content'>
               <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="about" element={<AboutPage/>}/>

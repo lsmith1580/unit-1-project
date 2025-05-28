@@ -36,3 +36,7 @@
 .event-form button:hover {
   background: #555;
 }
+
+.file-text {
+    color: white;
+}

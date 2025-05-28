@@ -69,6 +69,7 @@ const EventForm = ({ addEvent }) => {
                     required
                 />
                 <input
+                    className="file-text"
                     type="file"
                     accept="image/*"
                     onChange={handleImageUpload}
