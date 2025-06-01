@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./EventForm.css";
+import Button from "./Button";
 
 const EventForm = ({ addEvent }) => {
   const [formData, setFormData] = useState({
@@ -81,7 +82,7 @@ const EventForm = ({ addEvent }) => {
           value={formData.description}
           onChange={handleChange}
         />
-        <button type="submit">Add Event</button>
+        <Button type="submit">Add Event</Button>
       </form>
     </div>
   );

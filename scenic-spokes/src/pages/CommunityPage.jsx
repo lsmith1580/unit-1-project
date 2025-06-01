@@ -1,43 +1,51 @@
 import { useState } from "react";
-import EventCard from "../components/EventCard";
-import EventForm from "../components/EventForm";
 import { useEffect } from "react";
 import "./CommunityPage.css";
 import { useRef } from "react";
+import EventCard from "../components/EventCard";
+import EventForm from "../components/EventForm";
 
 const defaultEvents = [
   {
     id: 1,
-    title: "85th Sturgis Rally",
-    date: "2025-08-01",
+    title: "85th Sturgis Motorcycle Rally",
+    date: "08-01-2025",
     image: "/maxim-simonov-RUcDh47KhLk-unsplash.jpg",
-    description: "",
+    description:
+      "Join one of the biggest motorcycle rallies in the United States!",
   },
   {
     id: 2,
     title: "Bike Night",
-    date: "2025-06-17",
+    date: "06-17-2025",
     image: "/dipankar-gogoi-ZxYIby8WSNI-unsplash.jpg",
-    description: "",
+    description: "A fun evening meetup for bike enthusiasts.",
   },
   {
     id: 3,
     title: "Bike Show",
-    date: "2025-07-09",
+    date: "07-10-2025",
     image: "/ojo-toluwashe-_PcRWlbEqAE-unsplash.jpg",
-    description: "",
+    description: "Show off your ride and check out others in the community.",
   },
 ];
 
 const CommunityPage = () => {
   const [userEvents, setUserEvents] = useState([]);
+  const [lastEventId, setLastEventId] = useState(3); // default max id from defaultEvents
 
   const isInitialMount = useRef(true);
 
   useEffect(() => {
     const storedEvents = localStorage.getItem("userEvents");
+    const storedLastId = localStorage.getItem("lastEventId");
+
     if (storedEvents) {
       setUserEvents(JSON.parse(storedEvents));
+    }
+
+    if (storedLastId) {
+      setLastEventId(parseInt(storedLastId));
     }
   }, []);
 
@@ -47,25 +55,44 @@ const CommunityPage = () => {
       return;
     }
     localStorage.setItem("userEvents", JSON.stringify(userEvents));
-  }, [userEvents]);
-
-  const combinedEvents = [...defaultEvents, ...userEvents];
+    localStorage.setItem("lastEventId", lastEventId.toString());
+  }, [userEvents, lastEventId]);
 
   const addEvent = (newEvent) => {
-    const highestId = combinedEvents.reduce(
-      (max, event) => Math.max(max, event.id),
-      0
-    );
-    const newEvents = { ...newEvent, id: highestId + 1 };
-    setUserEvents((prevEvents) => [...prevEvents, newEvents]);
+    const newId = lastEventId + 1;
+    const eventWithId = { ...newEvent, id: newId };
+    setUserEvents((prevEvents) => [...prevEvents, eventWithId]);
+    setLastEventId(newId);
   };
+
+  const editEvent = (updatedEvent) => {
+    setUserEvents((prevEvents) =>
+      prevEvents.map((event) =>
+        event.id === updatedEvent.id ? updatedEvent : event
+      )
+    );
+  };
+
+  const deleteEvent = (idToDelete) => {
+    setUserEvents((prevEvents) =>
+      prevEvents.filter((event) => event.id !== idToDelete)
+    );
+  };
+
+  const combinedEvents = [...defaultEvents, ...userEvents];
 
   return (
     <div className="community-page">
       <h1>Community Events</h1>
       <div className="event-grid">
         {combinedEvents.map((event) => (
-          <EventCard event={event} key={event.id} />
+          <EventCard
+            key={event.id}
+            event={event}
+            onEdit={editEvent}
+            onDelete={deleteEvent}
+            isUserEvent={userEvents.some((e) => e.id === event.id)} // for controlling edit/delete availability
+          />
         ))}
       </div>
       <EventForm addEvent={addEvent} />

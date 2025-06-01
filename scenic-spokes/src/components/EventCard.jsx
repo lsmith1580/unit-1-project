@@ -1,4 +1,15 @@
-const EventCard = ({ event }) => {
+import { useState } from "react";
+import Button from "./Button";
+import ConfirmModal from "./ConfirmModal";
+
+const EventCard = ({ event, onDelete, isUserEvent }) => {
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const handleDelete = () => {
+    onDelete(event.id);
+    setShowConfirm(false);
+  };
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString();
@@ -12,7 +23,23 @@ const EventCard = ({ event }) => {
       <div className="event-info">
         <h2>{event.title}</h2>
         <p>{formatDate(event.date)}</p>
+        <p>{event.description}</p>
+        {isUserEvent && (
+          <div className="button-group">
+            <Button variant="danger" onClick={() => setShowConfirm(true)}>
+              Delete
+            </Button>
+          </div>
+        )}
       </div>
+
+      {showConfirm && (
+        <ConfirmModal
+          message="Are you sure you want to delete this event?"
+          onConfirm={handleDelete}
+          onCancel={() => setShowConfirm(false)}
+        />
+      )}
     </div>
   );
 };

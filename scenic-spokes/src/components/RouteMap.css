@@ -1,0 +1,80 @@
+.route-map {
+  background-image: url("/sturgis-map.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  min-height: 82dvh;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.sidebar {
+  flex-shrink: 0;
+  min-width: 250px;
+  background-color: none;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.stops-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 30px;
+}
+
+.stops-table th {
+  text-align: left;
+  background-color: #c7892d;
+  padding: 0 1rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 900;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: #24422c;
+  display: inline-block;
+}
+
+.details-link {
+  color: #24422c;
+  padding: 0.75rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 900;
+  font-size: 1.25rem;
+  text-decoration: none;
+  background-color: #c7892d;
+}
+
+.packing-list-area {
+  flex-shrink: 0;
+  min-width: 300px;
+  background-color: #c7892d;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.packing-list {
+  list-style: none;
+  padding: 0;
+}
+
+.packing-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.packing-list li div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.packing-input {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
