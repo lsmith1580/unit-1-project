@@ -51,19 +51,13 @@ const Header = () => {
                   onMouseLeave={() => setHoveringRoutesDropdown(false)}
                 >
                   <li>
-                    <NavLink to="/route-map/sturgis-motorcycle-museum">
-                      Sturgis Motorcycle Museum
-                    </NavLink>
+                    <NavLink to="/routes/1">Sturgis Motorcycle Museum</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/route-map/wonderland-cave">
-                      Wonderland Cave
-                    </NavLink>
+                    <NavLink to="/routes/2">Wonderland Cave</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/route-map/black-elk-peak">
-                      Black Elk Peak
-                    </NavLink>
+                    <NavLink to="/routes/3">Black Elk Peak</NavLink>
                   </li>
                 </ul>
               )}

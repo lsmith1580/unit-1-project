@@ -1,25 +1,34 @@
-// import { useParams, Link } from "react-router-dom";
+import { stops } from "../shared/stops";
+import { useParams, Link } from "react-router-dom";
+import "./StopInfo.css";
 
-// const StopDetailsPage = () => {
-//   const { id } = useParams();
-//   const stop = stops.find((s) => s.id === parseInt(id));
+const StopInfo = () => {
+  const { id } = useParams();
+  const stop = stops.find((stop) => stop.id === parseInt(id));
 
-//   if (!stop) {
-//     return (
-//       <div>
-//         <p>Stop not found.</p>
-//         <Link to="/routes">Back to Route Map</Link>
-//       </div>
-//     );
-//   }
+  if (!stop) {
+    return (
+      <div className="stop-info-container">
+        <h2>Stop not found</h2>
+        <Link to="/route-map" className="back-link">
+          Back to Route Map
+        </Link>
+      </div>
+    );
+  }
 
-//   return (
-//     <div className="stop-details-page">
-//       <h2>{stop.name}</h2>
-//       <p>{stop.info}</p>
-//       <Link to="/routes" className="back-link">← Back to Route Map</Link>
-//     </div>
-//   );
-// };
+  return (
+    <div className="stop-info-body">
+      <div className="stop-info-container">
+        <h1>{stop.name}</h1>
+        <img src={stop.image} alt={stop.name} className="stop-image" />
+        <p>{stop.info}</p>
+        <Link to="/route-map" className="back-link">
+          ← Back to Route Map
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-// export default StopDetailsPage;
+export default StopInfo;
