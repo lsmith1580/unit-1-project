@@ -4,12 +4,15 @@ import { useEffect } from "react";
 import Button from "./Button";
 import "./RouteMap.css";
 import { stops } from "../shared/stops";
+import ConfirmModal from "./ConfirmModal";
 
 const RouteMap = () => {
   const [packingList, setPackingList] = useState([]);
   const [newItem, setNewItem] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingValue, setEditingValue] = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [itemToDeleteIndex, setItemToDeleteIndex] = useState(null);
 
   useEffect(() => {
     const storedList = localStorage.getItem("packingList");
@@ -31,9 +34,22 @@ const RouteMap = () => {
     }
   };
 
-  const removeItem = (index) => {
+  const deleteItem = (index) => {
     const updatedList = packingList.filter((_, i) => i !== index);
     setPackingList(updatedList);
+  };
+
+  const handleConfirmDelete = () => {
+    if (itemToDeleteIndex !== null) {
+      deleteItem(itemToDeleteIndex);
+      setShowConfirm(false);
+      setItemToDeleteIndex(null);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirm(false);
+    setItemToDeleteIndex(null);
   };
 
   const startEditing = (index, value) => {
@@ -111,10 +127,20 @@ const RouteMap = () => {
                       </Button>
                       <Button
                         variant="danger"
-                        onClick={() => removeItem(index)}
+                        onClick={() => {
+                          setItemToDeleteIndex(index);
+                          setShowConfirm(true);
+                        }}
                       >
                         Delete
                       </Button>
+                      {showConfirm && (
+                        <ConfirmModal
+                          message="Are you sure you want to delete this item?"
+                          onConfirm={handleConfirmDelete}
+                          onCancel={handleCancelDelete}
+                        />
+                      )}
                     </div>
                   </>
                 )}
