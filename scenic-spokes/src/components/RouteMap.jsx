@@ -5,6 +5,7 @@ import Button from "./Button";
 import "./RouteMap.css";
 import { stops } from "../shared/stops";
 import ConfirmModal from "./ConfirmModal";
+import { useRef } from "react";
 
 const RouteMap = () => {
   const [packingList, setPackingList] = useState([]);
@@ -14,6 +15,8 @@ const RouteMap = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [itemToDeleteIndex, setItemToDeleteIndex] = useState(null);
 
+  const isInitialMount = useRef(true);
+
   useEffect(() => {
     const storedList = localStorage.getItem("packingList");
     if (storedList) {
@@ -22,6 +25,10 @@ const RouteMap = () => {
   }, []);
 
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     localStorage.setItem("packingList", JSON.stringify(packingList));
   }, [packingList]);
 
@@ -118,22 +125,26 @@ const RouteMap = () => {
                 ) : (
                   <>
                     {item}
+                    {!showConfirm && (
+                      <div>
+                        <Button
+                          variant="secondary"
+                          onClick={() => startEditing(index, item)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => {
+                            setItemToDeleteIndex(index);
+                            setShowConfirm(true);
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    )}
                     <div>
-                      <Button
-                        variant="secondary"
-                        onClick={() => startEditing(index, item)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={() => {
-                          setItemToDeleteIndex(index);
-                          setShowConfirm(true);
-                        }}
-                      >
-                        Delete
-                      </Button>
                       {showConfirm && (
                         <ConfirmModal
                           message="Are you sure you want to delete this item?"
