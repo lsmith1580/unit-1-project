@@ -54,8 +54,14 @@ const CommunityPage = () => {
       isInitialMount.current = false;
       return;
     }
-    localStorage.setItem("userEvents", JSON.stringify(userEvents));
-    localStorage.setItem("lastEventId", lastEventId.toString());
+    try {
+      localStorage.setItem("userEvents", JSON.stringify(userEvents));
+      localStorage.setItem("lastEventId", lastEventId.toString());
+    } catch (e) {
+      if (e.name === "QuotaExceededError") {
+        console.error("LocalStorage quota exceeded.");
+      }
+    }
   }, [userEvents, lastEventId]);
 
   const addEvent = (newEvent) => {

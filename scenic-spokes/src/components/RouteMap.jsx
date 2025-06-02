@@ -28,7 +28,13 @@ const RouteMap = () => {
       isInitialMount.current = false; //and overwriting any saved data
       return;
     }
-    localStorage.setItem("packingList", JSON.stringify(packingList));
+    try {
+      localStorage.setItem("packingList", JSON.stringify(packingList));
+    } catch (e) {
+      if (e.name === "QuotaExceededError") {
+        console.error("LocalStorage quota exceeded.");
+      }
+    }
   }, [packingList]);
 
   const addItem = () => {
