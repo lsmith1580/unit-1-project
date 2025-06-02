@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "./Button";
-import "./RouteMap.css";
 import { stops } from "../shared/stops";
 import ConfirmModal from "./ConfirmModal";
-import { useRef } from "react";
+import "./RouteMap.css";
 
 const RouteMap = () => {
   const [packingList, setPackingList] = useState([]);
   const [newItem, setNewItem] = useState("");
-  const [editingIndex, setEditingIndex] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null); //variable to keep track of which item is being edited
   const [editingValue, setEditingValue] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const [itemToDeleteIndex, setItemToDeleteIndex] = useState(null);
@@ -26,7 +24,8 @@ const RouteMap = () => {
 
   useEffect(() => {
     if (isInitialMount.current) {
-      isInitialMount.current = false;
+      //keeps this useEffect from running on initial mount and saving the empty dependency array back to local storage
+      isInitialMount.current = false; //and overwriting any saved data
       return;
     }
     localStorage.setItem("packingList", JSON.stringify(packingList));
