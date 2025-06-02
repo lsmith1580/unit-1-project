@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import "./CommunityPage.css";
-import { useRef } from "react";
 import EventCard from "../components/EventCard";
 import EventForm from "../components/EventForm";
 
@@ -33,36 +31,6 @@ const defaultEvents = [
 const CommunityPage = () => {
   const [userEvents, setUserEvents] = useState([]);
   const [lastEventId, setLastEventId] = useState(3); // default max id from defaultEvents
-
-  const isInitialMount = useRef(true);
-
-  useEffect(() => {
-    const storedEvents = localStorage.getItem("userEvents");
-    const storedLastId = localStorage.getItem("lastEventId");
-
-    if (storedEvents) {
-      setUserEvents(JSON.parse(storedEvents));
-    }
-
-    if (storedLastId) {
-      setLastEventId(parseInt(storedLastId));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
-    try {
-      localStorage.setItem("userEvents", JSON.stringify(userEvents));
-      localStorage.setItem("lastEventId", lastEventId.toString());
-    } catch (e) {
-      if (e.name === "QuotaExceededError") {
-        console.error("LocalStorage quota exceeded.");
-      }
-    }
-  }, [userEvents, lastEventId]);
 
   const addEvent = (newEvent) => {
     const newId = lastEventId + 1;

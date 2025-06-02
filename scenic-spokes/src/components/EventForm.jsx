@@ -35,11 +35,6 @@ const EventForm = ({ addEvent }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.title || !formData.date || !formData.image) {
-      alert("Please fill out all required fields.");
-      return;
-    }
-
     addEvent(formData);
 
     setFormData({
@@ -81,6 +76,7 @@ const EventForm = ({ addEvent }) => {
           placeholder="Event Description"
           value={formData.description}
           onChange={handleChange}
+          required
         />
         <Button type="submit">Add Event</Button>
       </form>

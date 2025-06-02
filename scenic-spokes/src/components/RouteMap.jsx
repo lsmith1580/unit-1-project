@@ -111,6 +111,7 @@ const RouteMap = () => {
 
       <div className="packing-list-area">
         <h2>Packing List</h2>
+
         {packingList.length === 0 ? (
           <p>No items yet — add something!</p>
         ) : (
@@ -130,33 +131,22 @@ const RouteMap = () => {
                 ) : (
                   <>
                     {item}
-                    {!showConfirm && (
-                      <div>
-                        <Button
-                          variant="secondary"
-                          onClick={() => startEditing(index, item)}
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          variant="danger"
-                          onClick={() => {
-                            setItemToDeleteIndex(index);
-                            setShowConfirm(true);
-                          }}
-                        >
-                          Delete
-                        </Button>
-                      </div>
-                    )}
                     <div>
-                      {showConfirm && (
-                        <ConfirmModal
-                          message="Are you sure you want to delete this item?"
-                          onConfirm={handleConfirmDelete}
-                          onCancel={handleCancelDelete}
-                        />
-                      )}
+                      <Button
+                        variant="secondary"
+                        onClick={() => startEditing(index, item)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          setItemToDeleteIndex(index);
+                          setShowConfirm(true);
+                        }}
+                      >
+                        Delete
+                      </Button>
                     </div>
                   </>
                 )}
@@ -174,7 +164,17 @@ const RouteMap = () => {
           />
           <Button onClick={addItem}>Add</Button>
         </div>
+
+        {/* Show confirmation modal only when triggered */}
+        {showConfirm && (
+          <ConfirmModal
+            message="Are you sure you want to delete this item?"
+            onConfirm={handleConfirmDelete}
+            onCancel={handleCancelDelete}
+          />
+        )}
       </div>
+
       <div className="mobile-route-map-image"></div>
     </div>
   );
